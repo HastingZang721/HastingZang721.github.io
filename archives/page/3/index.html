@@ -6,22 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>设计模式之装饰器Decorator | 臧正功 $blog</title>
+  <title>Archives | 臧正功 $blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式作为面对各种问题进行提炼和抽象而形成的解决方案，常见可分为三个大类：  创建类设计模式 结构类设计模式 行为类设计模式而今天主要讲述到是结构类设计模式中的装饰器模式。">
-<meta name="keywords" content="Technical log,Design Pattern">
-<meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之装饰器Decorator">
-<meta property="og:url" content="http://yoursite.com/2019/06/16/decorator/index.html">
+  <meta name="description" content="Let&apos;s Enjoy Coding">
+<meta property="og:type" content="website">
+<meta property="og:title" content="臧正功 $blog">
+<meta property="og:url" content="http://yoursite.com/archives/page/3/index.html">
 <meta property="og:site_name" content="臧正功 $blog">
-<meta property="og:description" content="设计模式作为面对各种问题进行提炼和抽象而形成的解决方案，常见可分为三个大类：  创建类设计模式 结构类设计模式 行为类设计模式而今天主要讲述到是结构类设计模式中的装饰器模式。">
+<meta property="og:description" content="Let&apos;s Enjoy Coding">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://brightloong.github.io/images/design-pattern/decorator/decorator.png">
-<meta property="og:updated_time" content="2019-05-02T13:26:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之装饰器Decorator">
-<meta name="twitter:description" content="设计模式作为面对各种问题进行提炼和抽象而形成的解决方案，常见可分为三个大类：  创建类设计模式 结构类设计模式 行为类设计模式而今天主要讲述到是结构类设计模式中的装饰器模式。">
-<meta name="twitter:image" content="https://brightloong.github.io/images/design-pattern/decorator/decorator.png">
+<meta name="twitter:title" content="臧正功 $blog">
+<meta name="twitter:description" content="Let&apos;s Enjoy Coding">
   
   
     <link rel="icon" href="/favicon.png">
@@ -168,200 +164,73 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-decorator" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 class="article-title" itemprop="name">
-      设计模式之装饰器Decorator
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/16/风与云/" class="archive-article-date">
+  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/16/风与云/">阅《风中有朵雨做的云》感悟</a>
     </h1>
   
 
-        
-        <a href="/2019/06/16/decorator/" class="archive-article-date">
-  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://yq.aliyun.com/articles/70448?utm_campaign=wenzhang&amp;utm_medium=article&amp;utm_source=QQ-qun&amp;utm_content=m_11961" target="_blank" rel="noopener">设计模式</a>作为面对各种问题进行提炼和抽象而形成的解决方案，常见可分为三个大类：</p>
-<ol>
-<li>创建类设计模式</li>
-<li>结构类设计模式</li>
-<li>行为类设计模式<br>而今天主要讲述到是结构类设计模式中的装饰器模式。<a id="more"></a> <h3 id="一-目的"><a href="#一-目的" class="headerlink" title="一.目的"></a>一.目的</h3><strong>为一个对象动态的附加额外的职责</strong>。装饰器（Decorators)提供除了用子类的另外一种灵活的扩充功能方法。就增加功能而言，装饰器模式比生成子类更为灵活；它允许向一个现有的对象添加新的功能，同时又不改变其结构。<h3 id="二-UML类图解析"><a href="#二-UML类图解析" class="headerlink" title="二. UML类图解析"></a>二. UML类图解析</h3>装饰器模式的UML类图如下<img src="https://brightloong.github.io/images/design-pattern/decorator/decorator.png" alt><br>抽象组件（Component）定义一个对象接口，使得装饰对象能动态加入到组件中。<br>具体组件（ConcreteComponent）定义一个能附加职责的类。<br>抽象装饰器（Decorator）维持组件对象的一个引用，并定义与组件接口一致的接口。<br>具体装饰器（ConcreteDecorator）添加职责给组件。<br>三.实例–点餐系统<br>先定义一类饮料的基类 Beverage ，为不同饮料做好一个接口。<br>每种不同的饮料（Cole，milk）继承这个基类，覆盖各自的特性，比如描述，价格等。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Beverage():</span><br><span class="line">    name = &quot;&quot;</span><br><span class="line">    price = 0.0</span><br><span class="line">    type = &quot;BEVERAGE&quot;</span><br><span class="line">    def getPrice(self):</span><br><span class="line">        return self.price</span><br><span class="line">    def setPrice(self, price):</span><br><span class="line">        self.price = price</span><br><span class="line">    def getName(self):</span><br><span class="line">        return self.name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class coke(Beverage):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.name = &quot;coke&quot;</span><br><span class="line">        self.price = 4.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class milk(Beverage):</span><br><span class="line">    def __init__(self):</span><br><span class="line">        self.name = &quot;milk&quot;</span><br><span class="line">        self.price = 5.0</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>除了基本配置，快餐店卖可乐时，可以选择加冰，如果加冰的话，要在原价上加0.3元；卖牛奶时，可以选择加糖，如果加糖的话，要原价上加0.5元,每种饮料都有很多中附加，，加糖，加冰等等;<br>这里我们定义装饰器：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">class drinkDecorator():</span><br><span class="line">    def getName(self):</span><br><span class="line">        pass</span><br><span class="line">    def getPrice(self):</span><br><span class="line">        pass</span><br><span class="line"></span><br><span class="line">class iceDecorator(drinkDecorator):</span><br><span class="line">    def __init__(self,beverage):</span><br><span class="line">        self.beverage=beverage</span><br><span class="line">    def getName(self):</span><br><span class="line">        return self.beverage.getName()+&quot; +ice&quot;</span><br><span class="line">    def getPrice(self):</span><br><span class="line">        return self.beverage.getPrice()+0.3</span><br><span class="line">    </span><br><span class="line">class sugarDecorator(drinkDecorator):</span><br><span class="line">    def __init__(self,beverage):</span><br><span class="line">        self.beverage=beverage</span><br><span class="line">    def getName(self):</span><br><span class="line">        return self.beverage.getName()+&quot; +sugar&quot;</span><br><span class="line">    def getPrice(self):</span><br><span class="line">        return self.beverage.getPrice()+0.5</span><br></pre></td></tr></table></figure></p>
-<p>在具体的业务场景中，就可以与饮料类进行关联。以牛奶+糖为例，示例业务场景如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">if  __name__==&quot;__main__&quot;:</span><br><span class="line">    Telunsu=milk()</span><br><span class="line">    print (&quot;Name:%s&quot;%Telunsu.getName())</span><br><span class="line">    print (&quot;Price:%s&quot;%Telunsu.getPrice())</span><br><span class="line">    sugar_milk=sugarDecorator(Telunsu)</span><br><span class="line">    print (&quot;Name:%s&quot; % sugar_milk.getName())</span><br><span class="line">    print (&quot;Price:%s&quot; % sugar_milk.getPrice())</span><br></pre></td></tr></table></figure></p>
-<p>打印结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">D:\ACAno\python.exe E:/untitled1/11.py</span><br><span class="line">Name:milk</span><br><span class="line">Price:5.0</span><br><span class="line">Name:milk +sugar</span><br><span class="line">Price:5.5</span><br></pre></td></tr></table></figure></p>
-<h3 id="四-优点与场景"><a href="#四-优点与场景" class="headerlink" title="四.优点与场景"></a>四.优点与场景</h3><p>优点：<br>1、抽象装饰器和具体被装饰的对象实现同一个接口<br>抽象装饰器里面要持有接口对象，以便请求传递,方便动态的扩展功能，且提供了比继承更多的灵活性；<br>2、Python的装饰器模式是实现Aspect Oriented Programming（AOP）的一种方式<br>应用场景：<br>1、需要动态添加一个类的功能，动态撤销，如本例</p>
-<h3 id="五-reference"><a href="#五-reference" class="headerlink" title="五.reference"></a>五.reference</h3><ul>
-<li><a href="https://yq.aliyun.com/articles/70737?utm_campaign=wenzhang&amp;utm_medium=article&amp;utm_source=QQ-qun&amp;utm_content=m_11966" target="_blank" rel="noopener">Python与设计模式–装饰器模式</a></li>
-<li><a href="https://yq.aliyun.com/articles/70448?utm_campaign=wenzhang&amp;utm_medium=article&amp;utm_source=QQ-qun&amp;utm_content=m_11961" target="_blank" rel="noopener">Python与设计模式</a></li>
-<li><a href="https://www.zhihu.com/question/26930016" target="_blank" rel="noopener">zhihu-如何理解Python装饰器？</a></li>
-<li><a href="https://baike.baidu.com/item/AOP/1332219?fr=aladdin" target="_blank" rel="noopener">AOP</a></li>
-</ul>
-
-      
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Technical log</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Design Pattern</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/Technical-learning//" class="article-tag-list-link color4">Technical learning</a>
+        			<a href="/categories/Life-perception//" class="article-tag-list-link color1">Life perception</a>
         		</li>
       		
 		</ul>
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/16/decorator/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/06/16/Markdown my first blog/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          我的第一篇日志：Markdown语法学习
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/06/16/eplison-greedy/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">epsilon-Greedy 总结</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一-目的"><span class="toc-number">1.</span> <span class="toc-text">一.目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二-UML类图解析"><span class="toc-number">2.</span> <span class="toc-text">二. UML类图解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四-优点与场景"><span class="toc-number">3.</span> <span class="toc-text">四.优点与场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五-reference"><span class="toc-number">4.</span> <span class="toc-text">五.reference</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 
 
@@ -395,8 +264,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
