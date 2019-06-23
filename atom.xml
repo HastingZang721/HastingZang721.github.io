@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-23T03:26:54.205Z</updated>
+  <updated>2019-06-23T03:15:37.786Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>又是一年毕业季</title>
-    <link href="http://yoursite.com/2019/06/23/0623/"/>
-    <id>http://yoursite.com/2019/06/23/0623/</id>
-    <published>2019-06-23T03:30:35.000Z</published>
-    <updated>2019-06-23T03:26:54.205Z</updated>
-    
-    <content type="html"><![CDATA[<p>少年班大佬的毕业季～<a id="more"></a><br><img src="https://i.bmp.ovh/imgs/2019/06/172e88db562f1df9.jpg" alt><br><img src="https://i.bmp.ovh/imgs/2019/06/43f3834b6544ebd0.jpeg" alt></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;少年班大佬的毕业季～
-    
-    </summary>
-    
-      <category term="Life perception" scheme="http://yoursite.com/categories/Life-perception/"/>
-    
-    
-      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
-    
-  </entry>
   
   <entry>
     <title>STL七大容器</title>
@@ -90,30 +68,6 @@
   </entry>
   
   <entry>
-    <title>从B/B+树来了解Mysql索引背后的数据结构</title>
-    <link href="http://yoursite.com/2019/06/16/BTree/"/>
-    <id>http://yoursite.com/2019/06/16/BTree/</id>
-    <published>2019-06-16T02:40:12.000Z</published>
-    <updated>2019-06-16T01:43:10.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>在复习数据库知识中想要了解Mysql的查询原理，顺便复习<a href="https://item.jd.com/40247188822.html" target="_blank" rel="noopener">算法导论第18章</a>内容，故复盘之；<a id="more"></a> </p><h4 id="1）索引"><a href="#1）索引" class="headerlink" title="1）索引"></a>1）索引</h4><blockquote><p>索引是对数据库表中一列或多列的值进行排序的一种数据结构。<br>索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录</p></blockquote><p>目前Mysql目前主要有以下几种索引类型：<strong>FULLTEXT，HASH，BTREE，RTREE</strong><br>其中<strong>BTREE</strong>索引就是一种将索引值按一定的算法，存入一个树形的数据结构中，每次查询都是从树的入口root开始，依次遍历node，获取leaf。这是MySQL里默认和最常用的索引类型。</p><hr><h4 id="2）数据结构与算法"><a href="#2）数据结构与算法" class="headerlink" title="2）数据结构与算法"></a>2）数据结构与算法</h4><h6 id="2-1）B树的定义"><a href="#2-1）B树的定义" class="headerlink" title="2.1）B树的定义"></a>2.1）B树的定义</h6><p><a href="https://i.loli.net/2019/06/14/5d035c6b480a756567.jpg" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/06/14/5d035c6b480a756567.jpg" alt="B树"></a><br>根为T.root</p><p>A)每个节点x 有如下性质：</p><ol><li>x.n：表示当前存储在节点x的关键字个数；</li><li>x .n个关键字本身x.key<sub>1</sub>,x.key<sub>2</sub>,…x.key<sub>x.n</sub>，以非降序存放；</li><li>x.leaf==true 表示x是叶子节点，反之 false；</li><li>每个内部节点x有n+1个指向孩子的指针</li></ol><p>B)每个关键字x.key<sub>i</sub>对存储在各个子树的关键字范围加以分割；<br>C)每个叶节点具有相同的深度，即树的高度H;<br>D)每个节点所包含的关键字个数有上界和下界。用一个被称为B树的最小度数t&gt;=2来表示这些界；(图中t=3)</p><blockquote><p>注意：B树上绝大多数操作所需的磁盘存取次数与B树的高度H成正比</p></blockquote><h6 id="2-2）B-树的定义"><a href="#2-2）B-树的定义" class="headerlink" title="2.2）B+树的定义"></a>2.2）B+树的定义</h6><p><a href="https://i.loli.net/2019/06/14/5d035ca88259967625.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/06/14/5d035ca88259967625.png" alt="B+.png"></a><br>B+树作为B树的一种变形树，它与B树的差异在于：</p><ul><li>有k个子结点的结点必然有k个关键码；</li><li>内节点不存储data，只存储key；</li><li>叶子节点不存储指针；<br>非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。</li><li><p>树的所有叶结点构成一个有序链表，可以按照关键码排序的次序遍历全部记录。</p><p>如图所示，在B+Tree的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的B+Tree。做这个优化的目的是为了提高区间访问的性能，例如果要查询key为从8到92的所有数据记录，当找到8后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率</p></li></ul><hr><h4 id="3）原理分析"><a href="#3）原理分析" class="headerlink" title="3）原理分析"></a>3）原理分析</h4><blockquote><p>一般来说，索引本身也很大，不可能全部存储在内存中，因此索引往往以索引文件的形式存储的磁盘上。这样的话，索引查找过程中就要产生磁盘I/O消耗，相对于内存存取，I/O存取的消耗要高几个数量级;<br>所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘I/O操作次数的渐进复杂度。<br>换句话说，索引的结构组织要尽量<strong>减少</strong>查找过程中磁盘I/O的存取次数</p></blockquote><h6 id="3-1）主存存储原理"><a href="#3-1）主存存储原理" class="headerlink" title="3.1）主存存储原理"></a>3.1）主存存储原理</h6><p><img src="https://i.loli.net/2019/06/14/5d03a88f97cf984310.png" alt="1.png"><br>从抽象角度看，主存是一系列的存储单元组成的矩阵，每个存储单元存储固定大小的数据。每个存储单元有唯一的地址，现代主存的编址规则比较复杂，这里将其简化成一个二维地址：通过一个行地址和一个列地址可以唯一定位到一个存储单元。</p><p>主存的存取过程如下：</p><blockquote><p>当系统需要读取主存时，则将地址信号放到地址总线上传给主存，主存读到地址信号后，解析信号并定位到指定存储单元，然后将此存储单元数据放到数据总线上，供其它部件读取。</p></blockquote><blockquote><p>写主存的过程类似，系统将要写入单元地址和数据分别放在地址总线和数据总线上，主存读取两个总线的内容，做相应的写操作。</p></blockquote><p>主存存取的时间仅与存取次数呈线性关系，因为不存在机械操作，两次存取的数据的“距离”不会对时间有任何影响，</p><h6 id="3-2）磁盘存储原理"><a href="#3-2）磁盘存储原理" class="headerlink" title="3.2）磁盘存储原理"></a>3.2）磁盘存储原理</h6><p><img src="https://i.loli.net/2019/06/14/5d03a88f9e1fc80747.jpeg" alt="2.jpeg"><br>与主存不同，磁盘I/O存在机械运动耗费，因此磁盘I/O的时间消耗是巨大的。<br>盘片被划分成一系列同心环，圆心是盘片中心，每个同心环叫做一个磁道，所有半径相同的磁道组成一个柱面。磁道被沿半径线划分成一个个小的段，每个段叫做一个扇区，每个扇区是磁盘的最小存储单元。为了简单起见，我们下面假设磁盘只有一个盘片和一个磁头。</p><blockquote><p>当需要从磁盘读取数据时，系统会将数据逻辑地址传给磁盘，磁盘的控制电路按照寻址逻辑将逻辑地址翻译成物理地址，即确定要读的数据在哪个磁道，哪个扇区。为了读取这个扇区的数据，需要将磁头放到这个扇区上方，为了实现这一点，磁头需要移动对准相应磁道，这个过程叫做寻道，所耗费时间叫做寻道时间，然后磁盘旋转将目标扇区旋转到磁头下，这个过程耗费的时间叫做旋转时间</p></blockquote><h6 id="3-3-局部性原理与磁盘预读"><a href="#3-3-局部性原理与磁盘预读" class="headerlink" title="3.3)局部性原理与磁盘预读"></a>3.3)局部性原理与磁盘预读</h6><ul><li>由于存储介质的特性，磁盘本身存取就比主存慢很多;</li><li>机械运动耗费;<br>因此为了提高效率，要尽量减少磁盘I/O，减少读写操作。为了达到这个目的，磁盘往往不是严格按需读取，而是每次都会<strong>预读</strong>，<br>即使只需要一个字节，磁盘也会从这个位置开始，顺序向后读取一定长度的数据放入内存。这样做的理论依据是计算机科学中著名的<strong>局部性原</strong>理：</li></ul><p><strong><em>当一个数据被用到时，其附近的数据也通常会马上被使用。</em></strong></p><p>程序运行期间所需要的数据通常比较集中。</p><p>由于磁盘顺序读取的效率很高（不需要寻道时间，只需很少的旋转时间），因此对于具有局部性的程序来说，预读可以提高I/O效率。</p><p>预读的长度一般为页（page）的整倍数。页是计算机管理存储器的逻辑块，硬件及操作系统往往将主存和磁盘存储区分割为连续的大小相等的块，每个存储块称为一页（在许多操作系统中，页得大小通常为4k），主存和磁盘以页为单位交换数据。当程序要读取的数据不在主存中时，会触发一个缺页异常，此时系统会向磁盘发出读盘信号，磁盘会找到数据的起始位置并向后连续读取一页或几页载入内存中，然后异常返回，程序继续运行。</p><p>文件系统及数据库系统的设计者利用了磁盘预读原理，将一个节点的大小设为等于一个页，这样每个节点只需要一次I/O就可以完全载入。为了达到这个目的，在实际实现B-Tree还需要使用如下技巧：</p><blockquote><p>每次新建一个节点的同时，直接申请一个页的空间( 512或者1024)，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个node只需一次I/O。如，将B树的度t设置为1024</p></blockquote><hr><h4 id="4-证明"><a href="#4-证明" class="headerlink" title="4)证明"></a>4)证明</h4><p>依据算法导论18章知识，分析B树最坏情况下的高度：</p><blockquote><p>定理： 如果n&gt;=1，那么对任意一颗包含n个关键字，高度为h,最小度数t&gt;=2的B树T有：<br>                 <strong>$$h&lt;=log_t    \frac{n+1} {2}$$</strong></p></blockquote><p>证明：</p><ul><li>B树T的根至少有一个关键字，而且所有其他的节点至少包含t-1个关键字，</li><li>因此高度为h的 B树T 在深度为1的时候至少包含2个节点，在深度2时至少包含2t个节点，深度为3时至少包含$2t^2$个节点…</li><li>直到深度h至少有$2t^{h-1}$个节点</li></ul><p>$$n&gt;=1+(t-1)\sum_{i=1}^h2t^{i-1}=2t^h-1$$<br>两边取以t为底的对数即可证明定理</p><p>由此可以看出，B树相较于红黑树，对数的底可以取很大，在查询时节约lgt的因子；避免大量磁盘访问；</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在复习数据库知识中想要了解Mysql的查询原理，顺便复习&lt;a href=&quot;https://item.jd.com/40247188822.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;算法导论第18章&lt;/a&gt;内容，故复盘之；
-    
-    </summary>
-    
-      <category term="Technical learning" scheme="http://yoursite.com/categories/Technical-learning/"/>
-    
-    
-      <category term="Technical log" scheme="http://yoursite.com/tags/Technical-log/"/>
-    
-      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
     <title>详解二叉排序树（Binary Sort Tree)的删除操作</title>
     <link href="http://yoursite.com/2019/06/16/BSTDELETE/"/>
     <id>http://yoursite.com/2019/06/16/BSTDELETE/</id>
@@ -134,6 +88,30 @@
       <category term="Technical log" scheme="http://yoursite.com/tags/Technical-log/"/>
     
       <category term="Data_structure" scheme="http://yoursite.com/tags/Data-structure/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>从B/B+树来了解Mysql索引背后的数据结构</title>
+    <link href="http://yoursite.com/2019/06/16/BTree/"/>
+    <id>http://yoursite.com/2019/06/16/BTree/</id>
+    <published>2019-06-16T02:40:12.000Z</published>
+    <updated>2019-06-16T01:43:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在复习数据库知识中想要了解Mysql的查询原理，顺便复习<a href="https://item.jd.com/40247188822.html" target="_blank" rel="noopener">算法导论第18章</a>内容，故复盘之；<a id="more"></a> </p><h4 id="1）索引"><a href="#1）索引" class="headerlink" title="1）索引"></a>1）索引</h4><blockquote><p>索引是对数据库表中一列或多列的值进行排序的一种数据结构。<br>索引也是一张表，该表保存了主键与索引字段，并指向实体表的记录</p></blockquote><p>目前Mysql目前主要有以下几种索引类型：<strong>FULLTEXT，HASH，BTREE，RTREE</strong><br>其中<strong>BTREE</strong>索引就是一种将索引值按一定的算法，存入一个树形的数据结构中，每次查询都是从树的入口root开始，依次遍历node，获取leaf。这是MySQL里默认和最常用的索引类型。</p><hr><h4 id="2）数据结构与算法"><a href="#2）数据结构与算法" class="headerlink" title="2）数据结构与算法"></a>2）数据结构与算法</h4><h6 id="2-1）B树的定义"><a href="#2-1）B树的定义" class="headerlink" title="2.1）B树的定义"></a>2.1）B树的定义</h6><p><a href="https://i.loli.net/2019/06/14/5d035c6b480a756567.jpg" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/06/14/5d035c6b480a756567.jpg" alt="B树"></a><br>根为T.root</p><p>A)每个节点x 有如下性质：</p><ol><li>x.n：表示当前存储在节点x的关键字个数；</li><li>x .n个关键字本身x.key<sub>1</sub>,x.key<sub>2</sub>,…x.key<sub>x.n</sub>，以非降序存放；</li><li>x.leaf==true 表示x是叶子节点，反之 false；</li><li>每个内部节点x有n+1个指向孩子的指针</li></ol><p>B)每个关键字x.key<sub>i</sub>对存储在各个子树的关键字范围加以分割；<br>C)每个叶节点具有相同的深度，即树的高度H;<br>D)每个节点所包含的关键字个数有上界和下界。用一个被称为B树的最小度数t&gt;=2来表示这些界；(图中t=3)</p><blockquote><p>注意：B树上绝大多数操作所需的磁盘存取次数与B树的高度H成正比</p></blockquote><h6 id="2-2）B-树的定义"><a href="#2-2）B-树的定义" class="headerlink" title="2.2）B+树的定义"></a>2.2）B+树的定义</h6><p><a href="https://i.loli.net/2019/06/14/5d035ca88259967625.png" target="_blank" rel="noopener"><img src="https://i.loli.net/2019/06/14/5d035ca88259967625.png" alt="B+.png"></a><br>B+树作为B树的一种变形树，它与B树的差异在于：</p><ul><li>有k个子结点的结点必然有k个关键码；</li><li>内节点不存储data，只存储key；</li><li>叶子节点不存储指针；<br>非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。</li><li><p>树的所有叶结点构成一个有序链表，可以按照关键码排序的次序遍历全部记录。</p><p>如图所示，在B+Tree的每个叶子节点增加一个指向相邻叶子节点的指针，就形成了带有顺序访问指针的B+Tree。做这个优化的目的是为了提高区间访问的性能，例如果要查询key为从8到92的所有数据记录，当找到8后，只需顺着节点和指针顺序遍历就可以一次性访问到所有数据节点，极大提到了区间查询效率</p></li></ul><hr><h4 id="3）原理分析"><a href="#3）原理分析" class="headerlink" title="3）原理分析"></a>3）原理分析</h4><blockquote><p>一般来说，索引本身也很大，不可能全部存储在内存中，因此索引往往以索引文件的形式存储的磁盘上。这样的话，索引查找过程中就要产生磁盘I/O消耗，相对于内存存取，I/O存取的消耗要高几个数量级;<br>所以评价一个数据结构作为索引的优劣最重要的指标就是在查找过程中磁盘I/O操作次数的渐进复杂度。<br>换句话说，索引的结构组织要尽量<strong>减少</strong>查找过程中磁盘I/O的存取次数</p></blockquote><h6 id="3-1）主存存储原理"><a href="#3-1）主存存储原理" class="headerlink" title="3.1）主存存储原理"></a>3.1）主存存储原理</h6><p><img src="https://i.loli.net/2019/06/14/5d03a88f97cf984310.png" alt="1.png"><br>从抽象角度看，主存是一系列的存储单元组成的矩阵，每个存储单元存储固定大小的数据。每个存储单元有唯一的地址，现代主存的编址规则比较复杂，这里将其简化成一个二维地址：通过一个行地址和一个列地址可以唯一定位到一个存储单元。</p><p>主存的存取过程如下：</p><blockquote><p>当系统需要读取主存时，则将地址信号放到地址总线上传给主存，主存读到地址信号后，解析信号并定位到指定存储单元，然后将此存储单元数据放到数据总线上，供其它部件读取。</p></blockquote><blockquote><p>写主存的过程类似，系统将要写入单元地址和数据分别放在地址总线和数据总线上，主存读取两个总线的内容，做相应的写操作。</p></blockquote><p>主存存取的时间仅与存取次数呈线性关系，因为不存在机械操作，两次存取的数据的“距离”不会对时间有任何影响，</p><h6 id="3-2）磁盘存储原理"><a href="#3-2）磁盘存储原理" class="headerlink" title="3.2）磁盘存储原理"></a>3.2）磁盘存储原理</h6><p><img src="https://i.loli.net/2019/06/14/5d03a88f9e1fc80747.jpeg" alt="2.jpeg"><br>与主存不同，磁盘I/O存在机械运动耗费，因此磁盘I/O的时间消耗是巨大的。<br>盘片被划分成一系列同心环，圆心是盘片中心，每个同心环叫做一个磁道，所有半径相同的磁道组成一个柱面。磁道被沿半径线划分成一个个小的段，每个段叫做一个扇区，每个扇区是磁盘的最小存储单元。为了简单起见，我们下面假设磁盘只有一个盘片和一个磁头。</p><blockquote><p>当需要从磁盘读取数据时，系统会将数据逻辑地址传给磁盘，磁盘的控制电路按照寻址逻辑将逻辑地址翻译成物理地址，即确定要读的数据在哪个磁道，哪个扇区。为了读取这个扇区的数据，需要将磁头放到这个扇区上方，为了实现这一点，磁头需要移动对准相应磁道，这个过程叫做寻道，所耗费时间叫做寻道时间，然后磁盘旋转将目标扇区旋转到磁头下，这个过程耗费的时间叫做旋转时间</p></blockquote><h6 id="3-3-局部性原理与磁盘预读"><a href="#3-3-局部性原理与磁盘预读" class="headerlink" title="3.3)局部性原理与磁盘预读"></a>3.3)局部性原理与磁盘预读</h6><ul><li>由于存储介质的特性，磁盘本身存取就比主存慢很多;</li><li>机械运动耗费;<br>因此为了提高效率，要尽量减少磁盘I/O，减少读写操作。为了达到这个目的，磁盘往往不是严格按需读取，而是每次都会<strong>预读</strong>，<br>即使只需要一个字节，磁盘也会从这个位置开始，顺序向后读取一定长度的数据放入内存。这样做的理论依据是计算机科学中著名的<strong>局部性原</strong>理：</li></ul><p><strong><em>当一个数据被用到时，其附近的数据也通常会马上被使用。</em></strong></p><p>程序运行期间所需要的数据通常比较集中。</p><p>由于磁盘顺序读取的效率很高（不需要寻道时间，只需很少的旋转时间），因此对于具有局部性的程序来说，预读可以提高I/O效率。</p><p>预读的长度一般为页（page）的整倍数。页是计算机管理存储器的逻辑块，硬件及操作系统往往将主存和磁盘存储区分割为连续的大小相等的块，每个存储块称为一页（在许多操作系统中，页得大小通常为4k），主存和磁盘以页为单位交换数据。当程序要读取的数据不在主存中时，会触发一个缺页异常，此时系统会向磁盘发出读盘信号，磁盘会找到数据的起始位置并向后连续读取一页或几页载入内存中，然后异常返回，程序继续运行。</p><p>文件系统及数据库系统的设计者利用了磁盘预读原理，将一个节点的大小设为等于一个页，这样每个节点只需要一次I/O就可以完全载入。为了达到这个目的，在实际实现B-Tree还需要使用如下技巧：</p><blockquote><p>每次新建一个节点的同时，直接申请一个页的空间( 512或者1024)，这样就保证一个节点物理上也存储在一个页里，加之计算机存储分配都是按页对齐的，就实现了一个node只需一次I/O。如，将B树的度t设置为1024</p></blockquote><hr><h4 id="4-证明"><a href="#4-证明" class="headerlink" title="4)证明"></a>4)证明</h4><p>依据算法导论18章知识，分析B树最坏情况下的高度：</p><blockquote><p>定理： 如果n&gt;=1，那么对任意一颗包含n个关键字，高度为h,最小度数t&gt;=2的B树T有：<br>                 <strong>$$h&lt;=log_t    \frac{n+1} {2}$$</strong></p></blockquote><p>证明：</p><ul><li>B树T的根至少有一个关键字，而且所有其他的节点至少包含t-1个关键字，</li><li>因此高度为h的 B树T 在深度为1的时候至少包含2个节点，在深度2时至少包含2t个节点，深度为3时至少包含$2t^2$个节点…</li><li>直到深度h至少有$2t^{h-1}$个节点</li></ul><p>$$n&gt;=1+(t-1)\sum_{i=1}^h2t^{i-1}=2t^h-1$$<br>两边取以t为底的对数即可证明定理</p><p>由此可以看出，B树相较于红黑树，对数的底可以取很大，在查询时节约lgt的因子；避免大量磁盘访问；</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在复习数据库知识中想要了解Mysql的查询原理，顺便复习&lt;a href=&quot;https://item.jd.com/40247188822.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;算法导论第18章&lt;/a&gt;内容，故复盘之；
+    
+    </summary>
+    
+      <category term="Technical learning" scheme="http://yoursite.com/categories/Technical-learning/"/>
+    
+    
+      <category term="Technical log" scheme="http://yoursite.com/tags/Technical-log/"/>
+    
+      <category term="Mysql" scheme="http://yoursite.com/tags/Mysql/"/>
     
   </entry>
   
