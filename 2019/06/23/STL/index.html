@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Bayesian theory | 臧正功 $blog</title>
+  <title>STL | 臧正功 $blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Let&apos;s Enjoy Coding">
-<meta property="og:type" content="website">
-<meta property="og:title" content="臧正功 $blog">
-<meta property="og:url" content="http://yoursite.com/tags/Bayesian-theory/index.html">
+  <meta name="description" content="STL是Standard Template Library的简称，中文名标准模板库；从根本上说，STL是一些“容器”的集合，这些“容器”有list,vector,set,map等;C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。">
+<meta name="keywords" content="Technical log,C++">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL">
+<meta property="og:url" content="http://yoursite.com/2019/06/23/STL/index.html">
 <meta property="og:site_name" content="臧正功 $blog">
-<meta property="og:description" content="Let&apos;s Enjoy Coding">
+<meta property="og:description" content="STL是Standard Template Library的简称，中文名标准模板库；从根本上说，STL是一些“容器”的集合，这些“容器”有list,vector,set,map等;C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-23T03:07:46.620Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="臧正功 $blog">
-<meta name="twitter:description" content="Let&apos;s Enjoy Coding">
+<meta name="twitter:title" content="STL">
+<meta name="twitter:description" content="STL是Standard Template Library的简称，中文名标准模板库；从根本上说，STL是一些“容器”的集合，这些“容器”有list,vector,set,map等;C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -164,35 +166,236 @@
           </div>
           <div id="js-content" class="content-ll">
             
-  
-  
+<article id="post-STL" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/16/贝叶斯1/" class="archive-article-date">
-  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/16/贝叶斯1/">从贝叶斯公式到贝叶斯网络（一）</a>
+    <h1 class="article-title" itemprop="name">
+      STL
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/06/23/STL/" class="archive-article-date">
+  	<time datetime="2019-06-23T03:05:53.436Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>STL是Standard Template Library的简称，中文名标准模板库；<br>从根本上说，STL是一些“容器”的集合，这些“容器”有list,vector,set,map等;<br>C++ STL（标准模板库）是一套功能强大的 C++ 模板类，提供了通用的模板类和函数，这些模板类和函数可以实现多种流行和常用的算法和数据结构，如向量、链表、队列、栈。<a id="more"></a><br>在C++标准中，STL被组织为下面的13个头文件：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 1）组成部分</span><br><span class="line">STL分为六大组件：</span><br><span class="line">| **容器(container)** | 常用数据结构。大致分为两类，**序列容器**，如vector，list，deque，**关联容器**，如set，map。在实现上，是类模板(class template) |</span><br><span class="line">|--|--|</span><br><span class="line">| **迭代器(iterator)** | 一套访问容器的接口，行为类似于**指针**。它为不同算法提供的相对统一的容器访问方式 |</span><br><span class="line">|**算法(algorithm)**  |  提供一套常用的算法，如sort，search，copy，erase … 在实现上，可以认为是一种函数模板(function template)。|</span><br><span class="line">| 配置器(allocator) | 为容器提供空间配置和释放，对象构造和析构的服务，也是一个class template。 |</span><br><span class="line">| 配接器(adapter) | 将一种容器修饰为功能不同的另一种容器，如以容器vector为基础，在其上实现stack，stack的行为也是一种容器。这就是一种配接器。 |</span><br><span class="line">| 仿函数(functor) |作为函数使用的对象，用于泛化算法中的操作  |</span><br><span class="line"></span><br><span class="line">![](https://i.bmp.ovh/imgs/2019/06/9b66cae550a5b339.jpg)</span><br><span class="line">#### 2)七大容器</span><br><span class="line">###### 2.1）序列式容器</span><br><span class="line">&gt;向量(vector) 连续存储的元素&lt;vector&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> - front()返回头部元素的引用，可以当左值</span><br><span class="line"> - back()返回尾部元素的引用，可以当左值</span><br><span class="line"> - push_back()添加元素，只能尾部添加</span><br><span class="line"> - pop_back()移除元素，只能在尾部移除</span><br><span class="line"> - </span><br><span class="line">    erase(iterator)函数，删除后会返回当前迭代器的下一个位置</span><br></pre></td></tr></table></figure></p>
+<p>int main(int argc, const char <em> argv[]) {<br>//string提供了成员函数c_str来将string对象转化成const char </em></p>
+<pre><code>//定义一个vector容器
+vector&lt;int&gt; v1;
+
+//插入元素(尾部插入)
+v1.push_back(1);
+v1.push_back(2);
+v1.push_back(3);
+
+//迭代器遍历打印
+for (vector&lt;int&gt;::iterator it = v1.begin(); it != v1.end(); it++) {
+    cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+}
+cout &lt;&lt; endl;
+
+//修改头部元素的值(front()返回是引用，可以当左值)
+v1.front() = 44;
+
+//输出头部元素
+cout&lt;&lt; &quot;头部元素:&quot; &lt;&lt; v1.front() &lt;&lt; endl;
+
+//修改尾部的值(back()返回是引用，可以当左值)
+v1.back() = 99;
+
+//输出尾部元素
+cout &lt;&lt; &quot;尾部元素&quot; &lt;&lt; v1.back() &lt;&lt;endl;
+
+//删除元素(从尾部删除)
+v1.pop_back();
+</code></pre><p> //2 区间删除<br>    //–2.1 删除前3个元素<br>    v1.erase(v1.begin(), v1.begin() + 3);</p>
+<pre><code>//--2.2 删除指定位置的元素
+v1.erase(v1.begin() +3);
+
+//迭代器遍历打印
+for (vector&lt;int&gt;::iterator it = v1.begin(); it != v1.end(); it++) {
+    cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+}
+cout &lt;&lt; endl;
+
+return 0;
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;列表(list) 由节点组成的双向链表，每个结点包含着一个元素&lt;list&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;双端队列(deque) 连续存储的指向不同元素的指针所组成的数组&lt;deque&gt;</span><br><span class="line"></span><br><span class="line"> - push_back 从尾部插入元素</span><br><span class="line"> - push_front 从头部插入元素</span><br><span class="line"> - pop_back 从尾部删除元素</span><br><span class="line"> - pop_front 从头部删除元素</span><br></pre></td></tr></table></figure></p>
+<p>int main(int argc, const char * argv[]) {</p>
+<pre><code>//定义deque对象
+deque&lt;int&gt; d1;
+
+//尾部插入元素
+d1.push_back(10);
+d1.push_back(20);
+d1.push_back(30);
+
+//头部插入元素
+d1.push_front(1);
+d1.push_front(2);
+d1.push_front(3);
+
+//尾部删除元素
+d1.pop_back();
+
+//头部删除元素
+d1.pop_front();
+
+//修改头部和尾部的值
+d1.front() = 111;
+d1.back()  = 222;
+
+//查找元素为1的下标
+//通过distance求取下标
+deque&lt;int&gt;::iterator it = d1.begin();
+while (it != d1.end()) {
+    if (*it == 1) {
+        cout &lt;&lt; &quot;下标：&quot; &lt;&lt; distance(d1.begin(), it) &lt;&lt; endl;
+    }
+    it++;
+}
+
+//遍历
+for (deque&lt;int&gt;::iterator it = d1.begin(); it != d1.end(); it++) {
+    cout &lt;&lt; *it &lt;&lt; &quot; &quot;;
+}
+cout &lt;&lt; endl;    
+return 0;
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">相关案例请-&gt;《**转4.2)Deque两端队列操作案例**》</span><br><span class="line"></span><br><span class="line">###### 2.2）关联式容器</span><br><span class="line">&gt;集合(set) 由节点组成的红黑树，每个节点都包含着一个元素，节点之间以某种作用于元素队的谓词排列，没有两个不同的元素能够拥有相同的次序 &lt;set&gt;;</span><br><span class="line">&gt;多重集合(multiset) 允许存在两个次序相等的元素的集合 &lt;set&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">C++的set容器，其中包含的元素是唯一的，而且是有序的。</span><br><span class="line">C++的set容器，是按照顺序插入的，不能在指定位置插入。</span><br><span class="line">C++的set容器，其结构是红黑二叉树，插入数据的效率比vector快[红黑树的插入过程（图解）](https://blog.csdn.net/Lyt15829797751/article/details/81054920)</span><br></pre></td></tr></table></figure></p>
+<p>////set 集合 ；元素不可重复<br>//// /multiset 多重集合；元素可重复<br>////set 常用API<br>//<br>//void test1(){<br>//    set<int>a;<br>//    a.insert(1);<br>//    a.insert(4);<br>//    a.insert(2);<br>//    for(set<int>::iterator it=a.begin();it!=a.end();it++)<br>//    {<br>//        cout&lt;&lt;(*it)&lt;&lt;endl;<br>//<br>//    }<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;映射(map) 由&#123;键，值&#125;对组成的集合，以某种作用于键对上的谓词排列 &lt;map&gt;</span><br><span class="line">&gt;多重映射(multimap) 允许键对有相等的次序的映射 &lt;map&gt;</span><br><span class="line"></span><br><span class="line">map和multimap是一个键值映射的容器。map中的键值对都是唯一的，但是multimap中一个键可以对应多个值。</span><br><span class="line"></span><br><span class="line">map和multimap是关联式容器，键值成对存在</span><br><span class="line">map和multimap是红黑变体的平衡二叉树结构</span><br><span class="line">map只支持唯一的键值对，集合中的元素是按照一定的顺序排列的</span><br><span class="line">multimap中的键可以出现多次</span><br><span class="line">map和multimap的元素插入过程是按照顺序插入的</span><br></pre></td></tr></table></figure></int></int></p>
+<p>//////////二元关联容器<br>/*</p>
+<ul>
+<li>map 映射：类字典<br>*</li>
+<li>multimap 多重映射</li>
+<li><p>pair&lt;键类型，附加数据类型&gt;<br><em>
+</em><br>*/<br>//5门课程 每门都有相应的学分，从中选择3门，输出学分总和<br>int main(){<br> map&lt;string,int&gt;courses;<br> //将课程信息插入courses 映射中</p>
+<p> courses.insert(make_pair(“csapp”,3));<br> courses.insert(make_pair(“math”,4));<br> courses.insert(make_pair(“chinese”,2));<br> courses.insert(make_pair(“english”,2));<br> courses.insert(make_pair(“os”,5));</p>
+<p> int n=3;<br> int sum=0;<br> while(n&gt;0){</p>
+<pre><code>string name;
+cin&gt;&gt;name;
+map&lt;string ,int&gt;::iterator it=courses.find(name);//查找课程map提供了两个函数进行key的查找：find和equal_range。
+if(it==courses.end())
+{
+    cout&lt;&lt;name&lt;&lt;&quot;is not available&quot;&lt;&lt;endl;
+</code></pre><p>   }</p>
+<pre><code>else{
+    sum+=it-&gt;second;//累计学分
+    courses.erase(it);//将刚才选过的课程从map 中删除
+    n--;
+
+}
+</code></pre><p> }cout&lt;&lt;”total credit”&lt;&lt;sum&lt;&lt;endl;<br> return 0;<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">#### 4) 案例代码</span><br><span class="line">###### 4.1）容器迭代器算法分离示例</span><br></pre></td></tr></table></figure>
+<p>#include<iostream></iostream></p>
+<p>#include<cstdio></cstdio></p>
+<p>#include<vector></vector></p>
+<p>#include<iterator></iterator></p>
+<p>#include<algorithm><br>using namespace std;</algorithm></p>
+<p>//STL<br>//standard Template library<br>//数据结构与算法分离<br>//容器：序列 关联<br>//迭代器： 相当于指针，实际上迭代器是一个类，封装成一个指针<br>//算法：通过有限的步骤解决问题</p>
+<p>//int mycount(int<em> start,int</em> end,int val){//算法，负责统计元素的个数<br>//    int num=0;<br>//    while(start!=end)<br>//    {<br>//        if(*start==val)<br>//        {num++;}<br>//        start++;</p>
+<p>//    }<br>//    return num;</p>
+<p>//}<br>//<br>//int main(){<br>//    //数组  容器<br>//    int arr[]={0,7,4,2,1,5,7,34,1};<br>//    int<em> pbegin=arr;//指向第一个元素的其位置<br>//    int</em> pend=&amp;(arr[sizeof(arr)/sizeof(int)]);//指向迭代器最后一个元素的下一个位置<br>//    int number=mycount(pbegin,pend,1);<br>//    cout&lt;&lt;number&lt;&lt;endl;</p>
+<p>//}<br>///////////////————————————————————</p>
+<p>//STL 基本语法<br>//void PrintVector(int v){<br>//<br>//    cout&lt;&lt;v;<br>//}<br>//<br>//void test1(){<br>//    vector<int>v;//定义一个容器，且指定这个容器存放的数据类型是int<br>//    v.push_back(10);<br>//    v.push_back(20);<br>//    v.push_back(40);<br>//<br>//    //vector<int>::iterator 迭代器类型<br>//<br>//    vector<int>::iterator pBegin=v.begin();<br>//    vector<int>::iterator pEnd=v.end();<br>//</int></int></int></int></p>
+<p>//    //容器提供的迭代其for_each算法<br>//<br>//    for_each(pBegin,pEnd,PrintVector);<br>//<br>//}<br>//容器也可以存放自定义的数据类型</p>
+<p>class Person{<br>public:<br>    Person(int age,int id):age(age),id(id){}</p>
+<p>public:<br>    int age;<br>    int id ;<br>};</p>
+<p>void PrintVector(Person v){</p>
+<pre><code>cout&lt;&lt;v.id&lt;&lt;&quot; &quot;&lt;&lt;v.age&lt;&lt;endl;
+</code></pre><p>}</p>
+<p>int test2(){<br>    vector<person>v;<br>    Person p1(10,20),p2(2,40);<br>    v.push_back(p1);<br>    v.push_back(p2);</person></p>
+<p>//<br>//    for(vector<person>::iterator it=v.begin();it!=v.end();it++)<br>//    {<br>//        cout&lt;&lt;(<em>it).age&lt;&lt;” “&lt;&lt;(</em>it).id&lt;&lt;endl;<br>//<br>//    }</person></p>
+<pre><code>vector&lt;Person &gt;::iterator pBegin=v.begin();
+vector&lt;Person &gt;::iterator pEnd=v.end();
+for_each(pBegin,pEnd,PrintVector);
+</code></pre><p>}//容器中存放Person类行的指针，并且打印for_each或者迭代器方式进行打印</p>
+<p>int main(){<br>    //test1();<br>    test2();</p>
+<pre><code>return 0;
+</code></pre><p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt;迭代器其实可以看作是一个字符的指针，上例子中vector&lt;Person&gt;::iterator = str.begin()就是定义一个Person类型的迭代器，指向str的第一次位置。*it就表示当前的字符。注意str.end()表示字符串最后一个字符的后面一个位置。如果it == str.end()就表示已经遍历到终点了。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###### 4.2)Deque两端队列操作案例</span><br></pre></td></tr></table></figure></p>
+<p>//deque 容器 两端队列</p>
+<p>/*</p>
+<ul>
+<li>相比于vector deque是双口，可以在两端插入和删除，</li>
+<li>front（）/back（）：返回的是元素</li>
+<li>begin（）/end():返回的是迭代器</li>
+<li>常有的API<br>*/<br>//初始化<br>//void test1(){<br>//    deque<int>d1;<br>//    deque<int>d2(10,5);<br>//    deque<int>d3(d2.begin(),d2.end());<br>//    deque<int>d4(d3);<br>//    d4.push_back(100);<br>//    d4.push_front(100);<br>//</int></int></int></int></li>
+</ul>
+<p>//    for(deque<int>::iterator it=d4.begin();it!=d4.end();it++)<br>//    {<br>//        cout&lt;&lt;*it&lt;&lt;” “;<br>//    }<br>//    cout&lt;&lt;endl;</int></p>
+<p>//}<br>//</p>
+<p>//int main(){<br>//    test1();<br>//    return 0;<br>//<br>//}</p>
+<p>//评委打分案例<br>//创建5个选手，10个评委对5个选手进行打分<br>//得分规则是：去掉最高和最低，取平均分<br>//按照得分对5名选手进行排名</p>
+<p>class Player{<br>public:<br>    //Player(string  name,int score){this-&gt;mName=name;this-&gt;mScore=score;}<br>    Player(string name,int score):mName(name),mScore(score){}<br>public:<br>    string  mName;<br>    int mScore;<br>};<br>//创建选手<br>void CreatePlayer(vector<player>&amp; v){<br>    string nameSeed=”ABCDE”;<br>    for(int i=0;i&lt;5;i++){<br>        Player p;<br>        p.mName=”选手”;<br>        p.mName+=nameSeed[i];<br>        p.mScore=0;<br>        v.push_back(p);</player></p>
+<pre><code>}
+</code></pre><p>}<br>//打分</p>
+<p>void Set_score(vector<player>&amp;v){<br>    for(vector<player>::iterator it=v.begin();it!=v.end();it++)//遍历选手</player></player></p>
+<pre><code>{//打分
+    deque&lt;int&gt;dScore;
+
+
+    for(int i=0;i&lt;10;i++)
+    {
+        int score=rand() %41+60;//[60,100)
+        dScore.push_back(score);
+
+    }
+    //对分数排序,调用ALg.默认使用的是从小到大
+    sort(dScore.begin(),dScore.end());
+    //去除最高分和最低分
+
+    dScore.pop_back();
+    dScore.pop_front();
+
+    //求平jun分
+    int sumScore=0;
+    for(deque&lt;int&gt;::iterator dit=dScore.begin();dit!=dScore.end();dit++)
+    {
+        sumScore+=(*dit);
+
+    }
+    int avg=sumScore/dScore.size();
+
+    //保存分数
+    (*it).mScore=avg;
+
+
+
+}
+</code></pre><p>}</p>
+<p>//根据分数排序<br>void PrintRank(vector<player>&amp;v)<br>{</player></p>
+<pre><code>sort(v.begin(),v.end());
+for(vector&lt;Player&gt;::iterator it=v.begin();it!=v.end();it++)
+{
+    cout&lt;&lt;&quot;姓名：  &quot;&lt;&lt;(*it).mName&lt;&lt;&quot;得分&quot;&lt;&lt;(*it).mScore&lt;&lt;endl;
+
+}
+</code></pre><p>}</p>
+<p>int main(){<br>    vector<player> vPlist;</player></p>
+<pre><code>CreatePlayer(vPlist);
+Set_score(vPlist);
+PrintRank(vPlist);
+
+
+return 0;
+</code></pre><p>}<br><code>`</code></p>
+<p>####5)备注<br>C++ STL 之 vector 的 capacity 和 size 属性区别<br>size 是当前 vector 容器真实占用的大小，也就是容器当前拥有多少个容器。<br>capacity 是指在发生 realloc 前能允许的最大元素数，即预分配的内存空间。<br>当然，这两个属性分别对应两个方法：resize() 和 reserve()。<br>使用 resize() 容器内的对象内存空间是真正存在的。<br>使用 reserve() 仅仅只是修改了 capacity 的值，容器内的对象并没有真实的内存空间.</p>
+
+      
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -202,13 +405,13 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Bayesian theory</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -221,17 +424,118 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/23/STL/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/06/16/博文新旧电脑迁移/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博文新旧电脑迁移</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -264,9 +568,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
