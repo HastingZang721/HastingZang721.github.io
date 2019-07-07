@@ -6,19 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Allpages | 臧正功 $blog</title>
+  <title>温习之二叉树重建 | 臧正功 $blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Let&apos;s Enjoy Coding">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Allpages">
-<meta property="og:url" content="http://yoursite.com/Allpages/index.html">
+  <meta name="description" content="一）题目描述： 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。">
+<meta name="keywords" content="Technical log,BinaryTree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="温习之二叉树重建">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/二叉树重建/index.html">
 <meta property="og:site_name" content="臧正功 $blog">
-<meta property="og:description" content="Let&apos;s Enjoy Coding">
+<meta property="og:description" content="一）题目描述： 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-29T09:34:38.000Z">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMDcvNWQyMWZhNDgyY2Q3NDk0Mzk1LnBuZw">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMDcvNWQyMWY4NzI0ODY4YzQzNzYzLnBuZw">
+<meta property="og:updated_time" content="2019-07-07T14:15:01.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Allpages">
-<meta name="twitter:description" content="Let&apos;s Enjoy Coding">
+<meta name="twitter:title" content="温习之二叉树重建">
+<meta name="twitter:description" content="一）题目描述： 输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMDcvNWQyMWZhNDgyY2Q3NDk0Mzk1LnBuZw">
   
   
     <link rel="icon" href="/favicon.png">
@@ -165,27 +169,43 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+<article id="post-二叉树重建" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Allpages
+      温习之二叉树重建
     </h1>
   
 
         
-        <a href="/Allpages/index.html" class="archive-article-date">
-  	<time datetime="2018-11-29T09:34:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-29</time>
+        <a href="/2019/07/07/二叉树重建/" class="archive-article-date">
+  	<time datetime="2019-07-07T14:13:16.906Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h4 id="一）题目描述："><a href="#一）题目描述：" class="headerlink" title="一）题目描述："></a>一）题目描述：</h4><blockquote>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">二叉树节点定义如下：</span><br><span class="line">struct BinaryTreeNode &#123;</span><br><span class="line">    double m_dbValue;</span><br><span class="line">    BinaryTreeNode *m_pLeft;</span><br><span class="line">    BinaryTreeNode *m_pRight;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="二）题目分析"><a href="#二）题目分析" class="headerlink" title="二）题目分析"></a>二）题目分析</h4><p>由二叉树遍历我们知道<br><strong>前序遍历顺序</strong>是：先访问根节点，然后前序遍历左子树，再前序遍历右子树。<br><strong>中序遍历顺序</strong>是：中序遍历根节点的左子树，然后是访问根节点，最后中序遍历右子树。所以有</p>
+<ul>
+<li>二叉树的前序遍历序列一定是该树的根节点</li>
+<li>中序遍历序列中根节点之前一定是该树的左子树，后面是该树的右子树<br>以题目中为例<blockquote>
+<p>前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}</p>
+</blockquote>
+</li>
+</ul>
+<p>则1一定是树的根节点；<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMDcvNWQyMWZhNDgyY2Q3NDk0Mzk1LnBuZw" alt="a.png"></p>
+<p>可以发现中序遍历序列中<br>节点{1}之前的{4,7,2}是这棵二叉树的左子树；<br>{5,3,8,6}是这棵二叉树的右子树；<br>然后，对于左子树采用<strong>递归</strong>的思想：<br>将前序子序列{2,4,7}和中序子序列{4,7,2}看成新的前序遍历和中序遍历序列。此时，对于这两个序列，该子树的根节点是{2}，该子树的左子树为{4,7}、右子树为空，如此递归下去（即把当前子树当做树，又根据上述步骤分析；<br>{5,3,8,6}这棵右子树的分析同上。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMDcvNWQyMWY4NzI0ODY4YzQzNzYzLnBuZw" alt="adbs.png"></p>
+<h4 id="三）代码实现"><a href="#三）代码实现" class="headerlink" title="三）代码实现"></a>三）代码实现</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">BinaryTreeNode* ConstructCore(int* startPreorder, int* endPreorder, int* startInorder, int* endInorder);</span><br><span class="line"></span><br><span class="line">BinaryTreeNode* Construct(int* preorder, int* inorder, int length)</span><br><span class="line">&#123;</span><br><span class="line">    if(preorder == nullptr || inorder == nullptr || length &lt;= 0)</span><br><span class="line">        return nullptr;</span><br><span class="line"></span><br><span class="line">    return ConstructCore(preorder, preorder + length - 1,</span><br><span class="line">        inorder, inorder + length - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">BinaryTreeNode* ConstructCore</span><br><span class="line">(</span><br><span class="line">    int* startPreorder, int* endPreorder, </span><br><span class="line">    int* startInorder, int* endInorder</span><br><span class="line">)</span><br><span class="line">&#123;</span><br><span class="line">    // 前序遍历序列的第一个数字是根结点的值</span><br><span class="line">    int rootValue = startPreorder[0];</span><br><span class="line">    BinaryTreeNode* root = new BinaryTreeNode();</span><br><span class="line">    root-&gt;m_nValue = rootValue;</span><br><span class="line">    root-&gt;m_pLeft = root-&gt;m_pRight = nullptr;</span><br><span class="line"></span><br><span class="line">    if(startPreorder == endPreorder)</span><br><span class="line">    &#123;</span><br><span class="line">        if(startInorder == endInorder &amp;&amp; *startPreorder == *startInorder)</span><br><span class="line">            return root;</span><br><span class="line">        else</span><br><span class="line">            throw std::exception(&quot;Invalid input.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 在中序遍历中找到根结点的值</span><br><span class="line">    int* rootInorder = startInorder;</span><br><span class="line">    while(rootInorder &lt;= endInorder &amp;&amp; *rootInorder != rootValue)</span><br><span class="line">        ++ rootInorder;</span><br><span class="line"></span><br><span class="line">    if(rootInorder == endInorder &amp;&amp; *rootInorder != rootValue)</span><br><span class="line">        throw std::exception(&quot;Invalid input.&quot;);</span><br><span class="line"></span><br><span class="line">    int leftLength = rootInorder - startInorder;</span><br><span class="line">    int* leftPreorderEnd = startPreorder + leftLength;</span><br><span class="line">    if(leftLength &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // 构建左子树</span><br><span class="line">        root-&gt;m_pLeft = ConstructCore(startPreorder + 1, leftPreorderEnd, </span><br><span class="line">            startInorder, rootInorder - 1);</span><br><span class="line">    &#125;</span><br><span class="line">    if(leftLength &lt; endPreorder - startPreorder)</span><br><span class="line">    &#123;</span><br><span class="line">        // 构建右子树</span><br><span class="line">        root-&gt;m_pRight = ConstructCore(leftPreorderEnd + 1, endPreorder,</span><br><span class="line">            rootInorder + 1, endInorder);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="四）小结"><a href="#四）小结" class="headerlink" title="四）小结"></a>四）小结</h4><p>题目主要是考察对二叉树的前序和中序遍历的理解，可以发现此类问题都可以化成若干个小问题采用递归的思想解决；</p>
+
       
       
 
@@ -194,7 +214,33 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Technical log</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">BinaryTree</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Technical-learning//" class="article-tag-list-link color4">Technical learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -244,7 +290,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/Allpages/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/07/二叉树重建/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -256,6 +302,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/23/STL/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">STL七大容器</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -269,6 +325,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一）题目描述："><span class="toc-number">1.</span> <span class="toc-text">一）题目描述：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二）题目分析"><span class="toc-number">2.</span> <span class="toc-text">二）题目分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三）代码实现"><span class="toc-number">3.</span> <span class="toc-text">三）代码实现</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四）小结"><span class="toc-number">4.</span> <span class="toc-text">四）小结</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -317,7 +386,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
