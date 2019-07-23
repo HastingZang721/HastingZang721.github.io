@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>从贝叶斯公式到贝叶斯网络（一） | 臧正功 $blog</title>
+  <title>关于Object类中equals的讨论） | 臧正功 $blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
+  <meta name="description" content="Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
 <meta name="keywords" content="Technical log,Java Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从贝叶斯公式到贝叶斯网络（一）">
+<meta property="og:title" content="关于Object类中equals的讨论）">
 <meta property="og:url" content="http://yoursite.com/2019/07/23/重写equals/index.html">
 <meta property="og:site_name" content="臧正功 $blog">
-<meta property="og:description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
+<meta property="og:description" content="Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU2MGNmMGM4YTU1OTAwLnBuZw">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU5MzEyM2Q1YzQ2MjQ5LnBuZw">
-<meta property="og:updated_time" content="2019-07-23T00:50:30.055Z">
+<meta property="og:updated_time" content="2019-07-23T00:53:17.744Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="从贝叶斯公式到贝叶斯网络（一）">
-<meta name="twitter:description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
+<meta name="twitter:title" content="关于Object类中equals的讨论）">
+<meta name="twitter:description" content="Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
 <meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw">
   
   
@@ -177,7 +177,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      从贝叶斯公式到贝叶斯网络（一）
+      关于Object类中equals的讨论）
     </h1>
   
 
@@ -190,7 +190,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 关于Object类中equals的讨论<br> Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：<a id="more"></a> </p>
+        <p> Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：<a id="more"></a> </p>
 <h4 id="一-分析源码"><a href="#一-分析源码" class="headerlink" title="(一)分析源码"></a>(一)分析源码</h4><p> 学习Java中一个很重要的方法是学会查看源码,当我们打开JDK-Api-1.8时发现，equals方法定义在java的根类Object类，定义如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">        return (this == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>equals方法在非空对象引用上实现等价关系：</p>
 <ul>
@@ -498,11 +498,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">BinaryTree</a>
+                <a href="javascript:void(0)" class="js-tag color4">loss function</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">loss function</a>
+                <a href="javascript:void(0)" class="js-tag color1">BinaryTree</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -514,7 +514,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Bayesian theory</a>
+                <a href="javascript:void(0)" class="js-tag color2">Nash Equilibrium</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Game theory</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,11 +526,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Nash Equilibrium</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Game theory</a>
+                <a href="javascript:void(0)" class="js-tag color1">Bayesian theory</a>
               </li>
             
             <div class="clearfix"></div>
