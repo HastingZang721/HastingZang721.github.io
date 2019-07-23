@@ -8,23 +8,22 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>从贝叶斯公式到贝叶斯网络（一） | 臧正功 $blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近真的是离不开贝叶斯这个科学牛人，他的理论至今仍对科学研究有着极大的影响，所以自己在兴趣与学业的双重感知(鸭梨)下毅然而然的决定要加深自己对贝叶斯理论的了解，奈何知识点太多而自己目前的了解有限，所以本章主要讲述基本的公式，算法思想和场景更多具体而生动的内容咱们下文再续。话不多说让我们一睹为快！  BTW,若观点错误或者引用侵权的欢迎指正交流。">
-<meta name="keywords" content="Technical log,Bayesian theory">
+  <meta name="description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
+<meta name="keywords" content="Technical log,Java Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从贝叶斯公式到贝叶斯网络（一）">
-<meta property="og:url" content="http://yoursite.com/2019/06/16/贝叶斯1/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/23/重写equals/index.html">
 <meta property="og:site_name" content="臧正功 $blog">
-<meta property="og:description" content="最近真的是离不开贝叶斯这个科学牛人，他的理论至今仍对科学研究有着极大的影响，所以自己在兴趣与学业的双重感知(鸭梨)下毅然而然的决定要加深自己对贝叶斯理论的了解，奈何知识点太多而自己目前的了解有限，所以本章主要讲述基本的公式，算法思想和场景更多具体而生动的内容咱们下文再续。话不多说让我们一睹为快！  BTW,若观点错误或者引用侵权的欢迎指正交流。">
+<meta property="og:description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181209165041827.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6Z2hhc3Rpbmc=,size_16,color_FFFFFF,t_70">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2018120917054312.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181209175535173.png">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2018120917574786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6Z2hhc3Rpbmc=,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2018-12-09T10:18:18.000Z">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU2MGNmMGM4YTU1OTAwLnBuZw">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU5MzEyM2Q1YzQ2MjQ5LnBuZw">
+<meta property="og:updated_time" content="2019-07-23T00:50:30.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从贝叶斯公式到贝叶斯网络（一）">
-<meta name="twitter:description" content="最近真的是离不开贝叶斯这个科学牛人，他的理论至今仍对科学研究有着极大的影响，所以自己在兴趣与学业的双重感知(鸭梨)下毅然而然的决定要加深自己对贝叶斯理论的了解，奈何知识点太多而自己目前的了解有限，所以本章主要讲述基本的公式，算法思想和场景更多具体而生动的内容咱们下文再续。话不多说让我们一睹为快！  BTW,若观点错误或者引用侵权的欢迎指正交流。">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181209165041827.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6Z2hhc3Rpbmc=,size_16,color_FFFFFF,t_70">
+<meta name="twitter:description" content="关于Object类中equals的讨论 Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw">
   
   
     <link rel="icon" href="/favicon.png">
@@ -171,7 +170,7 @@
           </div>
           <div id="js-content" class="content-ll">
             
-<article id="post-贝叶斯1" class="article article-type-post " itemscope itemprop="blogPost">
+<article id="post-重写equals" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -183,55 +182,47 @@
   
 
         
-        <a href="/2019/06/16/贝叶斯1/" class="archive-article-date">
-  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
+        <a href="/2019/07/23/重写equals/" class="archive-article-date">
+  	<time datetime="2019-07-23T00:48:50.099Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>   最近真的是离不开贝叶斯这个科学牛人，他的理论至今仍对科学研究有着极大的影响，所以自己在兴趣与学业的双重<del>感知</del>(鸭梨)下毅然而然的决定要加深自己对贝叶斯理论的了解，奈何知识点太多而自己目前的了解有限，所以<code>本章主要讲述基本的公式，算法思想和场景</code>更多具体而生动的内容咱们下文再续。话不多说让我们一睹为快！</p>
+        <p> 关于Object类中equals的讨论<br> Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：<a id="more"></a> </p>
+<h4 id="一-分析源码"><a href="#一-分析源码" class="headerlink" title="(一)分析源码"></a>(一)分析源码</h4><p> 学习Java中一个很重要的方法是学会查看源码,当我们打开JDK-Api-1.8时发现，equals方法定义在java的根类Object类，定义如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">        return (this == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>equals方法在非空对象引用上实现等价关系：</p>
+<ul>
+<li>自反性 ：对于任何非空的参考值x ， x.equals(x)应该返回true 。</li>
+<li>它是对称的 ：对于任何非空引用值x和y ， x.equals(y)应该返回true当且仅当y.equals(x)回报true 。</li>
+<li>传递性 ：对于任何非空引用值x ， y和z ，如果x.equals(y)回报true个y.equals(z)回报true ，然后x.equals(z)应该返回true </li>
+<li>它是一致的 ：对于任何非空引用值x和y ，多次调用x.equals(y)始终返回true或始终返回false ，没有设置中使用的信息equals比较上的对象被修改</li>
+<li><p>对于任何非空的参考值x ， x.equals(null)应该返回false 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> public final class Class&lt;T&gt;</span><br><span class="line">extends Object</span><br><span class="line">implements Serializable, GenericDeclaration, Type, AnnotatedElement</span><br></pre></td></tr></table></figure>
+<p>Java中每个类都继承于Object类，为了方便解说，下面写出Person类，对于下面的 Person 对象，只需姓名和年龄相等则认为是同一个对象。</p>
+</li>
+</ul>
+<h4 id="二-示例描述"><a href="#二-示例描述" class="headerlink" title="(二)示例描述"></a>(二)示例描述</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package demo5;</span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Objects;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    int age;</span><br><span class="line">    String name;</span><br><span class="line">    public Person() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public Person(int age, String name) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>当我们使用从object类继承下来的equals时，对于Person类而言，默认比较的是两个对象的地址值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class demo5Equals &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Person p1=new Person(19,&quot;di&quot;);</span><br><span class="line">        Person p2=new Person(19,&quot;guli&quot;);</span><br><span class="line">        Person p3=new Person(19,&quot;di&quot;);</span><br><span class="line">        boolean flag=p1.equals(p3);//不重写前肯定是false，重写equals是true</span><br><span class="line">        System.out.println(flag);</span><br></pre></td></tr></table></figure></p>
+<p>   其结果：<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw" alt="屏幕快照 2019-07-23 上午8.16.24.png"><br>所以在我们重写equals方法后，比较两对象p1.equals(p3)返回boolean为True，具体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean equals(Object o) &#123;</span><br><span class="line">    if (this == o) return true;</span><br><span class="line">    //使用反射技术，判断obj 是否是Person类型，等效于 obj instanceof Person</span><br><span class="line">    if (o == null || getClass() != o.getClass()) return false;</span><br><span class="line">    Person person = (Person) o;</span><br><span class="line">    return age == person.age &amp;&amp;</span><br><span class="line">            Objects.equals(name, person.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 那既已经知道了equals的特性，为啥重写equals必须要重写hashcode呢？</p>
+<h4 id="三-查看hashcode-方法"><a href="#三-查看hashcode-方法" class="headerlink" title="(三)查看hashcode()方法"></a>(三)查看hashcode()方法</h4><p> 此部分涉及到Java中hashmap知识，可见备注</p>
 <blockquote>
-<p>BTW,若观点错误或者引用侵权的欢迎指正交流。<a id="more"></a> </p>
+<p>public int hashCode()<br>返回对象的哈希码值。 支持这种方法是为了散列表，如HashMap提供的那样 。<br>hashCode的总合同是：</p>
+<ol>
+<li>只要在执行Java应用程序时多次在同一个对象上调用该方法， hashCode方法必须始终返回相同的整数，前提是修改了对象中equals比较中的信息。 该整数不需要从一个应用程序的执行到相同应用程序的另一个执行保持一致。</li>
+<li>如果根据equals(Object)方法两个对象相等，则在两个对象中的每个对象上调用hashCode方法必须产生相同的整数结果。</li>
+<li>不要求如果两个对象根据equals(java.lang.Object)方法不相等，那么在两个对象中的每个对象上调用hashCode方法必须产生不同的整数结果。 但是，程序员应该意识到，为不等对象生成不同的整数结果可能会提高哈希表的性能。</li>
+</ol>
 </blockquote>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>  自古以来，人们对一件事情发生或不发生的概率，只有固定的0和1，即要么发生，要么不发生，而不会去考虑某件事情发生的概率有多大，不发生的概率又是多大。比如如果问那时的人们一个问题：“有一个袋子，里面装着若干个白球和黑球，请问从袋子中取得白球的概率是多少？”他们会不假思索告诉你，取出白球和黑球都是一半对一半，非黑即白；</p>
+<p><strong>如果只重写了equals方法而没有重写hashCode方法的话，则会违反约定的第二条：相等的对象必须具有相等的散列码（hashCode)</strong></p>
+<p> 当我们只是重写equals 但是没有重写hashcode时：<br>  <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU2MGNmMGM4YTU1OTAwLnBuZw" alt="屏幕快照 2019-07-23 上午8.03.49.png"><br>重写hashcode()及其结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        return Objects.hash(age, name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU5MzEyM2Q1YzQ2MjQ5LnBuZw" alt="屏幕快照 2019-07-23 上午8.04.47.png"><br>其实这个不是语法定义，只是如果不重写hashcode在我们调用HashSet和HashMap的时候可能会造成歧义，也就是用equals方法判断的两个对象相等，但是hashcode不相等，会造成hashmap散列到不同数组下标，导致了哈希表中有两个相同的key，hashmap相同的key是可选的，但是默认是只能有唯一的key，hashset必须是唯一的key。</p>
 <blockquote>
-<p>即θ只能有一个值，而且不论你取了多少次，取得白球的概率θ始终都是1/2，即不随观察结果X 的变化而变化。</p>
+<p>结论：Java 对象如果要比较是否相等，则需要重写 equals 方法，同时重写 hashCode 方法</p>
 </blockquote>
-<p>   这种频率派的观点长期统治着人们的观念，直到后来一个名叫Thomas Bayes的人物出现。（*_^当然我国古代著名哲学家庄子老先生的<a href="http://www.doc88.com/p-5621381449250.html" target="_blank" rel="noopener">某些思想</a>其实也暗含着贝叶斯理论）</p>
-<h4 id="1-贝叶斯方法的提出"><a href="#1-贝叶斯方法的提出" class="headerlink" title="(1)贝叶斯方法的提出"></a>(1)贝叶斯方法的提出</h4><p>   <a href="https://baike.baidu.com/item/%E8%B4%9D%E5%8F%B6%E6%96%AF/1405899" target="_blank" rel="noopener">托马斯·贝叶斯Thomas Bayes（1702-1763）</a><img src="https://img-blog.csdnimg.cn/20181209165041827.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6Z2hhc3Rpbmc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<blockquote>
-<p>生活在18世纪的贝叶斯生前是位受人尊敬英格兰长老会牧师。为了证明上帝的存在，他发明了概率统计学原理，遗憾的是，并不为当时的人们所熟知他的这一美好愿望至死也未能实现。贝叶斯在数学方面主要研究概率论。他首先将归纳推理法  用于概率论基础理论，并创立了贝叶斯统计理论，对于统计决策函数、统计推断、统计的估算等做出了贡献。</p>
-</blockquote>
-<p>在 继续深入解说贝叶斯方法之前，先简单总结下频率派与贝叶斯派各自不同的思考方式：</p>
-<blockquote>
-<p>频率派把须要判断的參数θ看做是固定的未知常数。即概率尽管是未知的，但最起码是确定的一个值，同一时候，样本X 是随机的，所以频率派重点研究样本空间，大部分的概率计算都是针对样本X 的分布。<br>贝叶斯派的观点则截然相反。他们觉得參数是随机变量，而样本X 是固定的，由于样本是固定的，所以他们重点研究的是參数的分布。</p>
-</blockquote>
-<p>至此，贝叶斯及贝叶斯派提出了一个思考问题的固定模式：</p>
-<blockquote>
-<p>先验分布 $\Pi(\Theta)$+ 样本信息$X$=&gt; 后验分布$\Pi(\Theta|X)$</p>
-</blockquote>
-<h3 id="（2）概率公式"><a href="#（2）概率公式" class="headerlink" title="（2）概率公式"></a>（2）概率公式</h3><h5 id="2-1）条件概率"><a href="#2-1）条件概率" class="headerlink" title="2.1）条件概率"></a>2.1）条件概率</h5><p>  设A,B是两个事件，且P(B)&gt;0,则在事件B发生的条件下，事件A发生的条件概率（conditional probability)为：</p>
-<blockquote>
-<p> P(A|B)=P(AB)/P(B)</p>
-</blockquote>
-<p>例如：<br> ① 扔骰子，扔出的点数介于[1,3]称为事件A，扔出的点数介于[2,5]称为事件B，问：B已经发生的条件下，A发生的概率是多少？<br>也即，做一次实验时，即有可能仅发生A，也有可能仅发生B，也有可能AB同时发生；<br><img src="https://img-blog.csdnimg.cn/2018120917054312.png" alt="条件概率"></p>
-<h6 id="（2-2）联合概率"><a href="#（2-2）联合概率" class="headerlink" title="（2.2）联合概率"></a>（2.2）联合概率</h6><p>联合概率表示两个事件共同发生的概率。A与B的联合概率表示$P(A∩B)$或者$P(A,B)$。</p>
-<h6 id="2-3-边缘概率"><a href="#2-3-边缘概率" class="headerlink" title="(2.3) 边缘概率"></a>(2.3) 边缘概率</h6><p>边缘概率（又称先验概率）是某个事件发生的概率。边缘概率是这样得到的：在联合概率中，把最终结果中那些不需要的事件通过合并成它们的全概率，而消去它们（对离散随机变量用求和得全概率，对连续随机变量用积分得全概率），这称为边缘化（marginalization），比如A的边缘概率表示为P(A)，B的边缘概率表示为P(B)。</p>
-<h6 id="（2-4）贝叶斯公式"><a href="#（2-4）贝叶斯公式" class="headerlink" title="（2.4）贝叶斯公式"></a>（2.4）贝叶斯公式</h6><p>紧接着考虑一个问题：P(A|B)是在B发生的情况下A发生的可能性。</p>
-<blockquote>
-<p>首先，事件B发生之前，我们对事件A的发生有一个基本的概率判断，称为A的先验概率，用P(A)表示；<br>其次，事件B发生之后，我们对事件A的发生概率重新评估，称为A的后验概率，用P(A|B)表示；<br>类似的，事件A发生之前，我们对事件B的发生有一个基本的概率判断，称为B的先验概率，用P(B)表示；<br>同样，事件A发生之后，我们对事件B的发生概率重新评估，称为B的后验概率，用P(B|A)表示。<br><img src="https://img-blog.csdnimg.cn/20181209175535173.png" alt="在这里插入图片描述"></p>
-</blockquote>
-<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>以我们常用的搜索引擎当你不小心输入一个不存在的单词时，搜索引擎会提示你是不是要输入某一个正确的单词，比如当你在Google中输入“happu”时，系统会猜测你的意图：是不是要搜索“happy”，如下图所示：<br><img src="https://img-blog.csdnimg.cn/2018120917574786.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3p6Z2hhc3Rpbmc=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">这便是拼写检查。吴军博士的<a href="https://u14147674.ctfile.com/fs/14147674-236633527" target="_blank" rel="noopener">《数学之美》</a>，Google的拼写检查基于贝叶斯方法。下面以此为例贝叶斯方法，实现”拼写检查”的功能。</p>
-<blockquote>
-<p>  用户输入一个单词时，可能拼写正确，也可能拼写错误。如果把拼写正确的情况记做c（代表correct），拼写错误的情况记做w（代表wrong），那么”拼写检查”要做的事情就是：在发生w的情况下，试图推断出c。换言之：已知w，然后在若干个备选方案中，找出可能性最大的那个c，也就是求的$P(c|w)$最大值。</p>
-</blockquote>
-<p>   根据贝叶斯定理，有：$$<br>p(C|W)=\frac{(P(W|C))(P(C))}{P(W)}<br>$$<br> 由于对所有备选的c来说，对应的都是同一个w，所以它们的P(w)是相同的，因此我们只要最大化 $(P(W|C))(P(C))$<br>即可。其中：</p>
-<blockquote>
-<p>$P(c)$表示某个正确的词的出现”概率”，它可以用”频率”代替。如果我们有一个足够大的文本库，那么这个文本库中每个单词的出现频率，就相当于它的发生概率。某个词的出现频率越高，P(c)就越大。比如在你输入一个错误的词“Julw”时，系统更倾向于去猜测你可能想输入的词是“July”，而不是“Jult”，因为“July”更常见。<br>P(w|c)表示在试图拼写c的情况下，出现拼写错误w的概率。为了简化问题，假定两个单词在字形上越接近，就有越可能拼错，P(w|c)就越大。举例来说，相差一个字母的拼法，就比相差两个字母的拼法，发生概率更高。你想拼写单词July，那么错误拼成Julw（相差一个字母）的可能性，就比拼成Jullw高（相差两个字母）。值得一提的是，一般把这种问题称为“编辑距离”<br>    所以，我们比较所有拼写相近的词在文本库中的出现频率，再从中挑出出现频率最高的一个，即是用户最想输入的那个词。</p>
-</blockquote>
-<p>==<strong>介绍尚未结束 欲知详情请听下回分说</strong>==</p>
+<h4 id="四-备注"><a href="#四-备注" class="headerlink" title="(四)备注"></a>(四)备注</h4><p><a href="https://www.cnblogs.com/skywang12345/p/3310835.html" target="_blank" rel="noopener">1.HashMap详细介绍(源码解析)和使用示例</a></p>
 
       
       
@@ -250,7 +241,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Bayesian theory</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java Learning</a>
         		</li>
       		
 		</ul>
@@ -317,7 +308,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/16/贝叶斯1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/23/重写equals/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -331,18 +322,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/16/朴素贝叶斯/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          贝叶斯网络及朴素贝叶斯（二）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/16/混合策略nash求解/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">混合策略下纳什均衡的求解方法</div>
+    <a href="/2019/07/07/二叉树重建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">温习之二叉树重建</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -369,7 +351,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#引言"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-贝叶斯方法的提出"><span class="toc-number">1.1.</span> <span class="toc-text">(1)贝叶斯方法的提出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）概率公式"><span class="toc-number">2.</span> <span class="toc-text">（2）概率公式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1）条件概率"><span class="toc-number">2.0.1.</span> <span class="toc-text">2.1）条件概率</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#（2-2）联合概率"><span class="toc-number">2.0.1.1.</span> <span class="toc-text">（2.2）联合概率</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-3-边缘概率"><span class="toc-number">2.0.1.2.</span> <span class="toc-text">(2.3) 边缘概率</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#（2-4）贝叶斯公式"><span class="toc-number">2.0.1.3.</span> <span class="toc-text">（2.4）贝叶斯公式</span></a></li></ol></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#场景"><span class="toc-number">3.</span> <span class="toc-text">场景</span></a></li>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-分析源码"><span class="toc-number">1.</span> <span class="toc-text">(一)分析源码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-示例描述"><span class="toc-number">2.</span> <span class="toc-text">(二)示例描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-查看hashcode-方法"><span class="toc-number">3.</span> <span class="toc-text">(三)查看hashcode()方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-备注"><span class="toc-number">4.</span> <span class="toc-text">(四)备注</span></a></li></ol>
                     </div>
                 </span>
             </div>
