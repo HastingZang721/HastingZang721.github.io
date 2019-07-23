@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-07-23T00:53:17.744Z</updated>
+  <updated>2019-07-23T00:54:23.063Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于Object类中equals的讨论）</title>
+    <title>关于Object类中equals的讨论</title>
     <link href="http://yoursite.com/2019/07/23/%E9%87%8D%E5%86%99equals/"/>
     <id>http://yoursite.com/2019/07/23/重写equals/</id>
     <published>2019-07-23T00:48:50.099Z</published>
-    <updated>2019-07-23T00:53:17.744Z</updated>
+    <updated>2019-07-23T00:54:23.063Z</updated>
     
     <content type="html"><![CDATA[<p> Java面试题中经常会出现这样的问题：为什么要重写hashcode( )和equals( )?，以下论述作简要分析：<a id="more"></a> </p><h4 id="一-分析源码"><a href="#一-分析源码" class="headerlink" title="(一)分析源码"></a>(一)分析源码</h4><p> 学习Java中一个很重要的方法是学会查看源码,当我们打开JDK-Api-1.8时发现，equals方法定义在java的根类Object类，定义如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">        return (this == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>equals方法在非空对象引用上实现等价关系：</p><ul><li>自反性 ：对于任何非空的参考值x ， x.equals(x)应该返回true 。</li><li>它是对称的 ：对于任何非空引用值x和y ， x.equals(y)应该返回true当且仅当y.equals(x)回报true 。</li><li>传递性 ：对于任何非空引用值x ， y和z ，如果x.equals(y)回报true个y.equals(z)回报true ，然后x.equals(z)应该返回true </li><li>它是一致的 ：对于任何非空引用值x和y ，多次调用x.equals(y)始终返回true或始终返回false ，没有设置中使用的信息equals比较上的对象被修改</li><li><p>对于任何非空的参考值x ， x.equals(null)应该返回false 。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> public final class Class&lt;T&gt;</span><br><span class="line">extends Object</span><br><span class="line">implements Serializable, GenericDeclaration, Type, AnnotatedElement</span><br></pre></td></tr></table></figure><p>Java中每个类都继承于Object类，为了方便解说，下面写出Person类，对于下面的 Person 对象，只需姓名和年龄相等则认为是同一个对象。</p></li></ul><h4 id="二-示例描述"><a href="#二-示例描述" class="headerlink" title="(二)示例描述"></a>(二)示例描述</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">package demo5;</span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.Objects;</span><br><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    int age;</span><br><span class="line">    String name;</span><br><span class="line">    public Person() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    public Person(int age, String name) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>当我们使用从object类继承下来的equals时，对于Person类而言，默认比较的是两个对象的地址值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class demo5Equals &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Person p1=new Person(19,&quot;di&quot;);</span><br><span class="line">        Person p2=new Person(19,&quot;guli&quot;);</span><br><span class="line">        Person p3=new Person(19,&quot;di&quot;);</span><br><span class="line">        boolean flag=p1.equals(p3);//不重写前肯定是false，重写equals是true</span><br><span class="line">        System.out.println(flag);</span><br></pre></td></tr></table></figure></p><p>   其结果：<br><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjUyMTAxYWYzNDQ3NzAyLnBuZw" alt="屏幕快照 2019-07-23 上午8.16.24.png"><br>所以在我们重写equals方法后，比较两对象p1.equals(p3)返回boolean为True，具体代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean equals(Object o) &#123;</span><br><span class="line">    if (this == o) return true;</span><br><span class="line">    //使用反射技术，判断obj 是否是Person类型，等效于 obj instanceof Person</span><br><span class="line">    if (o == null || getClass() != o.getClass()) return false;</span><br><span class="line">    Person person = (Person) o;</span><br><span class="line">    return age == person.age &amp;&amp;</span><br><span class="line">            Objects.equals(name, person.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p> 那既已经知道了equals的特性，为啥重写equals必须要重写hashcode呢？</p><h4 id="三-查看hashcode-方法"><a href="#三-查看hashcode-方法" class="headerlink" title="(三)查看hashcode()方法"></a>(三)查看hashcode()方法</h4><p> 此部分涉及到Java中hashmap知识，可见备注</p><blockquote><p>public int hashCode()<br>返回对象的哈希码值。 支持这种方法是为了散列表，如HashMap提供的那样 。<br>hashCode的总合同是：</p><ol><li>只要在执行Java应用程序时多次在同一个对象上调用该方法， hashCode方法必须始终返回相同的整数，前提是修改了对象中equals比较中的信息。 该整数不需要从一个应用程序的执行到相同应用程序的另一个执行保持一致。</li><li>如果根据equals(Object)方法两个对象相等，则在两个对象中的每个对象上调用hashCode方法必须产生相同的整数结果。</li><li>不要求如果两个对象根据equals(java.lang.Object)方法不相等，那么在两个对象中的每个对象上调用hashCode方法必须产生不同的整数结果。 但是，程序员应该意识到，为不等对象生成不同的整数结果可能会提高哈希表的性能。</li></ol></blockquote><p><strong>如果只重写了equals方法而没有重写hashCode方法的话，则会违反约定的第二条：相等的对象必须具有相等的散列码（hashCode)</strong></p><p> 当我们只是重写equals 但是没有重写hashcode时：<br>  <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU2MGNmMGM4YTU1OTAwLnBuZw" alt="屏幕快照 2019-07-23 上午8.03.49.png"><br>重写hashcode()及其结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public int hashCode() &#123;</span><br><span class="line">        return Objects.hash(age, name);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pLmxvbGkubmV0LzIwMTkvMDcvMjMvNWQzNjU5MzEyM2Q1YzQ2MjQ5LnBuZw" alt="屏幕快照 2019-07-23 上午8.04.47.png"><br>其实这个不是语法定义，只是如果不重写hashcode在我们调用HashSet和HashMap的时候可能会造成歧义，也就是用equals方法判断的两个对象相等，但是hashcode不相等，会造成hashmap散列到不同数组下标，导致了哈希表中有两个相同的key，hashmap相同的key是可选的，但是默认是只能有唯一的key，hashset必须是唯一的key。</p><blockquote><p>结论：Java 对象如果要比较是否相等，则需要重写 equals 方法，同时重写 hashCode 方法</p></blockquote><h4 id="四-备注"><a href="#四-备注" class="headerlink" title="(四)备注"></a>(四)备注</h4><p><a href="https://www.cnblogs.com/skywang12345/p/3310835.html" target="_blank" rel="noopener">1.HashMap详细介绍(源码解析)和使用示例</a></p>]]></content>
     
@@ -419,28 +419,6 @@
   </entry>
   
   <entry>
-    <title>阅《风中有朵雨做的云》感悟</title>
-    <link href="http://yoursite.com/2019/06/16/%E9%A3%8E%E4%B8%8E%E4%BA%91/"/>
-    <id>http://yoursite.com/2019/06/16/风与云/</id>
-    <published>2019-06-16T02:40:12.000Z</published>
-    <updated>2019-04-16T01:20:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://www.dazui.com/CKUpload/images/201902/p2547759924.jpg" alt><a id="more"></a> </p><p>其实于我而言，风雨云这部电影</p><p>是和<strong>《我不是药神》</strong>一样重量级的影片；</p><p>感谢娄烨导演，镜头从<strong>拆迁闹事</strong>开始，展出一幅幅真实·震撼的生活百景图；</p><p>让坐在实验室里，每天三点一线的我，能更切身的体会到‘’外面世界‘’的不易；</p><p>看完电影之后百感滋味在心头，当我们遇到人生起伏是是非非，很多决策与用意已经不能仅仅以<strong>善恶</strong>来评判；</p><p>不了解林慧，她欺骗感情婚内出轨，是个十恶不赦的<strong>渣女</strong>，误杀情敌阿云，包庇女儿自愿入狱，甚至愿意为不相干的家栋以命博姜紫成；</p><p>不了解唐奕杰，他贪赃枉法一手遮天，置百姓利益于不顾，是个彻头彻尾的<strong>贪官</strong>污吏，但是年少时期单纯青涩，向往爱情却求而不得，照顾小诺视如己出；</p><p>不了解姜紫成，他表面浪荡不羁，声色犬马，在杀人不眨眼的商界步步为营，为达目的不择手段，是个纯24K的<strong>奸商</strong>，欺骗阿云却又钟情林慧，或许他感情一直从一，除林慧外皆可抛，却又爱惜小诺，似乎尚存一丝人性；</p><p>不了解家栋，影片上演的是忍辱负重，未查出伤父真相小心谨慎，却又极易受人牵绊，自损八百。明明对小诺有情但更也仅此为止，尊乎警队<strong>法律</strong>，却又沉冤得雪后辞职，迷雾重重；</p><p>不了解小诺，外表是游手好闲的富家女孩，一面爱护亲人，对姜叔和母亲的感情心知肚明，却对养护多年的法律意义“父亲”监护人唐主任凶残<strong>杀害</strong>，不明亲情又向往得到家栋爱情，似乎想要走出浑水却早已越陷越深；</p><p>或许正如所言：<strong>社会是风，欲望是雨，我们是云</strong></p><p>最后推荐影片中饰演唐奕杰演员的回答-&gt;<a href="https://www.zhihu.com/question/52513222/answer/644839772" target="_blank" rel="noopener">如何评价电影《风中有朵雨做的云》？</a>简直是本年度最佳番外！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://www.dazui.com/CKUpload/images/201902/p2547759924.jpg&quot; alt&gt;
-    
-    </summary>
-    
-      <category term="Life perception" scheme="http://yoursite.com/categories/Life-perception/"/>
-    
-    
-      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
     <title>从贝叶斯公式到贝叶斯网络（一）</title>
     <link href="http://yoursite.com/2019/06/16/%E8%B4%9D%E5%8F%B6%E6%96%AF1/"/>
     <id>http://yoursite.com/2019/06/16/贝叶斯1/</id>
@@ -463,6 +441,28 @@
       <category term="Technical log" scheme="http://yoursite.com/tags/Technical-log/"/>
     
       <category term="Bayesian theory" scheme="http://yoursite.com/tags/Bayesian-theory/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阅《风中有朵雨做的云》感悟</title>
+    <link href="http://yoursite.com/2019/06/16/%E9%A3%8E%E4%B8%8E%E4%BA%91/"/>
+    <id>http://yoursite.com/2019/06/16/风与云/</id>
+    <published>2019-06-16T02:40:12.000Z</published>
+    <updated>2019-04-16T01:20:12.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://www.dazui.com/CKUpload/images/201902/p2547759924.jpg" alt><a id="more"></a> </p><p>其实于我而言，风雨云这部电影</p><p>是和<strong>《我不是药神》</strong>一样重量级的影片；</p><p>感谢娄烨导演，镜头从<strong>拆迁闹事</strong>开始，展出一幅幅真实·震撼的生活百景图；</p><p>让坐在实验室里，每天三点一线的我，能更切身的体会到‘’外面世界‘’的不易；</p><p>看完电影之后百感滋味在心头，当我们遇到人生起伏是是非非，很多决策与用意已经不能仅仅以<strong>善恶</strong>来评判；</p><p>不了解林慧，她欺骗感情婚内出轨，是个十恶不赦的<strong>渣女</strong>，误杀情敌阿云，包庇女儿自愿入狱，甚至愿意为不相干的家栋以命博姜紫成；</p><p>不了解唐奕杰，他贪赃枉法一手遮天，置百姓利益于不顾，是个彻头彻尾的<strong>贪官</strong>污吏，但是年少时期单纯青涩，向往爱情却求而不得，照顾小诺视如己出；</p><p>不了解姜紫成，他表面浪荡不羁，声色犬马，在杀人不眨眼的商界步步为营，为达目的不择手段，是个纯24K的<strong>奸商</strong>，欺骗阿云却又钟情林慧，或许他感情一直从一，除林慧外皆可抛，却又爱惜小诺，似乎尚存一丝人性；</p><p>不了解家栋，影片上演的是忍辱负重，未查出伤父真相小心谨慎，却又极易受人牵绊，自损八百。明明对小诺有情但更也仅此为止，尊乎警队<strong>法律</strong>，却又沉冤得雪后辞职，迷雾重重；</p><p>不了解小诺，外表是游手好闲的富家女孩，一面爱护亲人，对姜叔和母亲的感情心知肚明，却对养护多年的法律意义“父亲”监护人唐主任凶残<strong>杀害</strong>，不明亲情又向往得到家栋爱情，似乎想要走出浑水却早已越陷越深；</p><p>或许正如所言：<strong>社会是风，欲望是雨，我们是云</strong></p><p>最后推荐影片中饰演唐奕杰演员的回答-&gt;<a href="https://www.zhihu.com/question/52513222/answer/644839772" target="_blank" rel="noopener">如何评价电影《风中有朵雨做的云》？</a>简直是本年度最佳番外！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://www.dazui.com/CKUpload/images/201902/p2547759924.jpg&quot; alt&gt;
+    
+    </summary>
+    
+      <category term="Life perception" scheme="http://yoursite.com/categories/Life-perception/"/>
+    
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
