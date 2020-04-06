@@ -166,6 +166,96 @@
             
   
     
+<article id="post-eplison-greedy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/16/eplison-greedy/">epsilon-Greedy 总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/16/eplison-greedy/" class="archive-article-date">
+  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>新年伊始，万事待兴，很高兴我即将进入学生时代最忙碌的一年（<em>论文+offer的双重压力</em>）；寒假期间有读<a href="https://www.amazon.cn/dp/B01M6ZBZY3/?tag=360boxbuy-23" target="_blank" rel="noopener">&lt;刻意练习&gt;</a>这本书，书中最让我受益的信念便是<strong>杰出不是一种天赋，而是一种技巧；这种技巧，你我都可以掌握</strong>;而这样的一种锻炼自我的方式需要持之以恒的养成，在新的一年我也会坚持博客更新，愿你我都能拥有这样终生学习的能力；话不多数，让我们进入今天讨论的主题。
+        
+          <a class="article-more-a" href="/2019/06/16/eplison-greedy/#more">阅读全文 >></a>
+        
+      
+      
+
+      
+    </p></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Technical log</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Technical-learning//" class="article-tag-list-link color4">Technical learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/16/eplison-greedy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    
 <article id="post-交叉熵" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -448,111 +538,6 @@
 
   
     
-<article id="post-混合策略nash求解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/16/混合策略nash求解/">混合策略下纳什均衡的求解方法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/06/16/混合策略nash求解/" class="archive-article-date">
-  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为自己的研究方向是博弈论问题，之前在做混合策略+演化博弈（现在不做了）求解的时候，参考了很多关于纳什均衡和策略求解的方法，今天在这里会简单的叙述：一般情况下 ，我们可以如何去快速求解混合策略下的NE（<em>Nash Equilibrium</em>）<br> 问题很简单，那么我来给大家精简介绍下相关概念吧。</p>
-<h3 id="一-概念介绍"><a href="#一-概念介绍" class="headerlink" title="一 概念介绍"></a>一 概念介绍</h3><p> 1）纳什均衡</p>
-<blockquote>
-<p> 纳什均衡是指博弈中这样的局面，对于每个参与者来说，只要其他人不改变策略，他就无法改善自己的状况</p>
-</blockquote>
-<p> 谈到博弈，都不得不提一位人物<a href="https://baike.baidu.com/item/%E7%BA%A6%E7%BF%B0%C2%B7%E7%BA%B3%E4%BB%80/957881" target="_blank" rel="noopener">纳什</a>,也正因为他，才有我今天能研究的课题（==鞠躬==）<br> <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1543577321060&amp;di=598d0c9e0ccfe57242c5b1b1e024c64f&amp;imgtype=0&amp;src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F13649525-3671731427272c7f.jpg" alt></p>
-<blockquote>
-<p>约翰·纳什，生于1928年6月13日。著名经济学家、博弈论创始人、《美丽心灵》男主角原型。前麻省理工学院助教，后任普林斯顿大学数学系教授，主要研究博弈论、微分几何学和偏微分方程。由于他与另外两位数学家（经济学家，约翰·C·海萨尼和莱因哈德·泽尔腾）在非合作博弈的均衡分析理论方面做出了开创性的贡献，对博弈论和经济学产生了重大影响，而获得1994年诺贝尔经济学奖。<br>
-        
-          <a class="article-more-a" href="/2019/06/16/混合策略nash求解/#more">阅读全文 >></a>
-        
-      
-      
-
-      
-    </p></blockquote></div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Technical log</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Nash Equilibrium</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Game theory</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Technical-learning//" class="article-tag-list-link color4">Technical learning</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/16/混合策略nash求解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-  
-    
 <article id="post-激活函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -706,6 +691,111 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/06/16/絮絮叨叨1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+  
+    
+<article id="post-混合策略nash求解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/16/混合策略nash求解/">混合策略下纳什均衡的求解方法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/16/混合策略nash求解/" class="archive-article-date">
+  	<time datetime="2019-06-16T02:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为自己的研究方向是博弈论问题，之前在做混合策略+演化博弈（现在不做了）求解的时候，参考了很多关于纳什均衡和策略求解的方法，今天在这里会简单的叙述：一般情况下 ，我们可以如何去快速求解混合策略下的NE（<em>Nash Equilibrium</em>）<br> 问题很简单，那么我来给大家精简介绍下相关概念吧。</p>
+<h3 id="一-概念介绍"><a href="#一-概念介绍" class="headerlink" title="一 概念介绍"></a>一 概念介绍</h3><p> 1）纳什均衡</p>
+<blockquote>
+<p> 纳什均衡是指博弈中这样的局面，对于每个参与者来说，只要其他人不改变策略，他就无法改善自己的状况</p>
+</blockquote>
+<p> 谈到博弈，都不得不提一位人物<a href="https://baike.baidu.com/item/%E7%BA%A6%E7%BF%B0%C2%B7%E7%BA%B3%E4%BB%80/957881" target="_blank" rel="noopener">纳什</a>,也正因为他，才有我今天能研究的课题（==鞠躬==）<br> <img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1543577321060&amp;di=598d0c9e0ccfe57242c5b1b1e024c64f&amp;imgtype=0&amp;src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F13649525-3671731427272c7f.jpg" alt></p>
+<blockquote>
+<p>约翰·纳什，生于1928年6月13日。著名经济学家、博弈论创始人、《美丽心灵》男主角原型。前麻省理工学院助教，后任普林斯顿大学数学系教授，主要研究博弈论、微分几何学和偏微分方程。由于他与另外两位数学家（经济学家，约翰·C·海萨尼和莱因哈德·泽尔腾）在非合作博弈的均衡分析理论方面做出了开创性的贡献，对博弈论和经济学产生了重大影响，而获得1994年诺贝尔经济学奖。<br>
+        
+          <a class="article-more-a" href="/2019/06/16/混合策略nash求解/#more">阅读全文 >></a>
+        
+      
+      
+
+      
+    </p></blockquote></div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Technical log</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Nash Equilibrium</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Game theory</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Technical-learning//" class="article-tag-list-link color4">Technical learning</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/16/混合策略nash求解/">展开全文 >></a>
         </p>
       
 
@@ -936,7 +1026,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 臧正功
+    		&copy; 2020 臧正功
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1045,19 +1135,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Design Pattern</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">BinaryTree</a>
+                <a href="javascript:void(0)" class="js-tag color4">Markdown</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">loss function</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">BinaryTree</a>
               </li>
              
               <li class="article-tag-list-item">
